@@ -42,7 +42,9 @@
         (-> {:years (str->int years)}
             (assoc-if months :months (str->int months))
             (assoc-if days :days (str->int days))
-            (assoc-if offset :offset (parse-time-offset offset)))))))
+            (assoc :offset (if offset
+                             (parse-time-offset offset)
+                             {:hours 0 :minutes 0})))))))
 
 (def parse-time
   (let [re #"(\d\d)(?::(\d\d)(?::(\d\d)(?:[.](\d+))?)?)?([Zz]|[-+]\d\d:\d\d)?"]
@@ -52,7 +54,9 @@
             (assoc-if minutes :minutes (str->int minutes))
             (assoc-if seconds :seconds (str->int seconds))
             (assoc-if fraction :fraction (str->double (str "0." fraction)))
-            (assoc-if offset :offset (parse-time-offset offset)))))))
+            (assoc :offset (if offset
+                             (parse-time-offset offset)
+                             {:hours 0 :minutes 0})))))))
 
 (def parse-date-time
   (let [re #"(\d\d\d\d)-(\d\d)-(\d\d)[Tt](\d\d)(?::(\d\d)(?::(\d\d)(?:[.](\d+))?)?)?([Zz]|[-+]\d\d:\d\d)?"]
@@ -66,7 +70,9 @@
             (assoc-if minutes :minutes (str->int minutes))
             (assoc-if seconds :seconds (str->int seconds))
             (assoc-if fraction :fraction (str->double (str "0." fraction)))
-            (assoc-if offset :offset (parse-time-offset offset)))))))
+            (assoc :offset (if offset
+                             (parse-time-offset offset)
+                             {:hours 0 :minutes 0})))))))
 
 ;;; Verification of Extra-Grammatical Restrictions from RFC3339
 
