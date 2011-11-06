@@ -24,7 +24,7 @@
   (Double/parseDouble s))
 
 (def parse-time-offset
-  (let [re #"([Zz])|([-+])(\d\d):(\d\d)"]
+  (let [re #"([Z])|([-+])(\d\d):(\d\d)"]
     (fn [^CharSequence cs]
       (if-let [[_ z sign hours minutes] (re-matches re cs)]
         (cond z            {:hours 0
@@ -36,7 +36,7 @@
         (fail (str "Unable to parse time-offset '" cs "'"))))))
 
 (def parse-date
-  (let [re #"(\d\d\d\d)(?:-(\d\d)(?:-(\d\d))?)?([Zz]|[-+]\d\d:\d\d)?"]
+  (let [re #"(\d\d\d\d)(?:-(\d\d)(?:-(\d\d))?)?([Z]|[-+]\d\d:\d\d)?"]
     (fn [^CharSequence cs]
       (when-let [[_ years months days offset] (re-matches re cs)]
         (-> {:years (str->int years)}
@@ -47,7 +47,7 @@
                              {:hours 0 :minutes 0})))))))
 
 (def parse-time
-  (let [re #"(\d\d)(?::(\d\d)(?::(\d\d)(?:[.](\d+))?)?)?([Zz]|[-+]\d\d:\d\d)?"]
+  (let [re #"(\d\d)(?::(\d\d)(?::(\d\d)(?:[.](\d+))?)?)?([Z]|[-+]\d\d:\d\d)?"]
     (fn [^CharSequence cs]
       (when-let [[_ hours minutes seconds fraction offset] (re-matches re cs)]
         (-> {:hours (str->int hours)}
@@ -59,7 +59,7 @@
                              {:hours 0 :minutes 0})))))))
 
 (def parse-date-time
-  (let [re #"(\d\d\d\d)-(\d\d)-(\d\d)[Tt](\d\d)(?::(\d\d)(?::(\d\d)(?:[.](\d+))?)?)?([Zz]|[-+]\d\d:\d\d)?"]
+  (let [re #"(\d\d\d\d)-(\d\d)-(\d\d)[T](\d\d)(?::(\d\d)(?::(\d\d)(?:[.](\d+))?)?)?([Z]|[-+]\d\d:\d\d)?"]
     (fn [^CharSequence cs]
       (when-let [[_ years months days hours minutes seconds fraction offset]
                  (re-matches re cs)]

@@ -14,7 +14,7 @@
                         :offset {:hours 0 :minutes 0}}
        "2001-02-03T04:05" {:years 2001 :months 2 :days 3 :hours 4 :minutes 5
                            :offset {:hours 0 :minutes 0}}
-       "2001-02-03t04:05:06" {:years 2001 :months 2 :days 3 :hours 4
+       "2001-02-03T04:05:06" {:years 2001 :months 2 :days 3 :hours 4
                               :minutes 5 :seconds 6
                               :offset {:hours 0 :minutes 0}}
        "2001-02-03T04:05:06.987654321" {:years 2001 :months 2 :days 3 :hours 4
@@ -31,7 +31,7 @@
                               :offset {:hours 0 :minutes 0}}
        "2001-02-03T04:05Z" {:years 2001 :months 2 :days 3 :hours 4 :minutes 5
                             :offset {:hours 0 :minutes 0}}
-       "2001-02-03t04:05:06Z" {:years 2001 :months 2 :days 3 :hours 4
+       "2001-02-03T04:05:06Z" {:years 2001 :months 2 :days 3 :hours 4
                                :minutes 5 :seconds 6
                                :offset {:hours 0 :minutes 0}}
        "2001-02-03T04:05:06.987654321-07:08" {:years 2001 :months 2 :days 3
@@ -72,7 +72,9 @@
        "2000-02-03T04:05:60.987654321-07:08"
        "2000-02-03T04:59:61.987654321-07:08"
        "2000-02-03T04:05:06.987654321-24:08"
-       "2000-02-03T04:05:06.987654321-07:60"))
+       "2000-02-03T04:05:06.987654321-07:60"
+       "2000-12-03t04:05:06.987654321-07:08"
+       "2000-12-03T04:05:06.987654321z"))
 
 
 
