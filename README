@@ -1,0 +1,13 @@
+# rfc3339datetime
+
+Parser for RFC3339 style date/time representations extended to make
+trailing elements optional.
+
+## Usage
+
+
+## License
+
+Copyright (C) 2011 B. Smith-Mannschott
+
+Distributed under the Eclipse Public License, the same as Clojure.
