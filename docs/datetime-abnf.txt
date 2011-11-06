@@ -10,9 +10,20 @@ time-secfrac    = "." 1*DIGIT
 time-numoffset  = ("+" / "-") time-hour ":" time-minute
 time-offset     = "Z" / time-numoffset
 
-partial-time    = time-hour ":" time-minute ":" time-second
-                  [time-secfrac]
-full-date       = date-fullyear "-" date-month "-" date-mday
-full-time       = partial-time time-offset
+partial-time    = time-hour [ ":" time-minute [ ":" time-second 
+                  [time-secfrac] ] ]
+full-time       = partial-time [ time-offset ]
 
-date-time       = full-date "T" full-time
+partial-date    = date-fullyear [ "-" date-month [ "-" date-mday ] ]
+full-date       = partial-date [ time-offset ]
+
+date-time       = date-fullyear "-" date-month "-" date-mday "T" full-time
+
+; Changes relative to RFC3339
+;
+; - partial-time can be truncated
+; - partial-date can be truncated
+; - the datetime, which must begin with a fully specified date
+;   portion, can end with a truncated time.
+; - time-offset is optional
+; - full-date may include a time-offset
